@@ -1,16 +1,36 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Button @click="activeTab = 'TabA'">Tab A</Button>
+  <Button @click="activeTab = 'TabB'">Tab B</Button>
+  <Button @click="activeTab = 'TabC'">Tab C</Button>
+
+  <keep-alive>
+  <component :is="activeTab"/>
+  </keep-alive>
+  <!-- <TabA v-if="activeTab === 'TabA'"/>
+  <TabB v-if="activeTab === 'TabB'"/>
+  <TabC v-if="activeTab === 'TabC'"/> -->
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TabA from './components/TabA.vue';
+import TabB from './components/TabB.vue';
+import TabC from './components/TabC.vue';
+
+
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+TabA,
+TabB,
+TabC
+  },
+  data () {
+    return {
+      activeTab: 'TabA'
+    }
+  },
 }
 </script>
 
